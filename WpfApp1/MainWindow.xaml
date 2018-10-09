@@ -15,7 +15,7 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Label Content="Počet bodů:" FontSize="20" Grid.Column="0" Grid.Row="0"></Label>
-        <Grid Grid.Row="1" x:Name="test">
+        <Grid Grid.Row="1" x:Name="test" Margin="10">
         </Grid>
     </Grid>
 </Window>
