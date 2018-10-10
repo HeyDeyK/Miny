@@ -14,7 +14,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Label Content="Počet bodů:" FontSize="20" Grid.Column="0" Grid.Row="0"></Label>
+        <Label x:Name="BombCounterLabel" Content="Počet min: 0/20" FontSize="20" Grid.Column="0" Grid.Row="0"></Label>
+        <Label x:Name="Timer" Content="" FontSize="20" Foreground="Red" Margin="676,0,-102,0"/>
         <Grid Grid.Row="1" x:Name="test" Margin="10">
         </Grid>
     </Grid>
