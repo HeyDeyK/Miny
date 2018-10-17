@@ -124,8 +124,10 @@ namespace WpfApp1
             Grid.SetColumn(Btn, selSloupec);
             DynamicGrid.Children.Add(Btn);
 
-
-
+            SousedVolno(selRadek - 1, selSloupec);
+            SousedVolno(selRadek, selSloupec - 1);
+            SousedVolno(selRadek, selSloupec + 1);
+            SousedVolno(selRadek + 1, selSloupec);
             /*OdhalNuly(selRadek-1, selSloupec);
             Console.WriteLine("Odhal bombu cyklus 1");
             OdhalNuly(selRadek, selSloupec-1);
@@ -140,18 +142,73 @@ namespace WpfApp1
         }
         public void SousedVolno(int selRadek,int selSloupec)
         {
+            int Nalezeno = 0;
             for (int j = 0; j < 3; j++)
             {
                 for (int k = 0; k < 3; k++)
                 {
+                    /*if ((((selRadek - 1) + j) < 0) || (((selRadek - 1) + j) > PocetPoli))
+                    {
+                        return;
+                    }
+                    else if ((((selSloupec - 1) +k) < 0) || (((selSloupec - 1) + k) > PocetPoli))
+                    {
+                        return;
+                    }*/
                     //RevealPole(((selRadek - 1) + j), ((selSloupec - 1) + k));
                     string VolnoOkoli1 = ((selRadek - 1) + j) + "" + ((selSloupec - 1) + k);
                     var VolnoOkoliList1 = BombList.FirstOrDefault(stringToCheck => stringToCheck.Contains(VolnoOkoli1));
-                    if (VolnoOkoliList1 == null)
+                    if (VolnoOkoliList1 != null)
                     {
-                        //RevealPole(((selRadek - 1) + o), ((selSloupec - 1) + p));
+                        Nalezeno++;
                     }
                 }
+            }
+            if(Nalezeno>0)
+            {
+                Grid DynamicGrid = test;
+                Button Btn = new Button();
+                Btn.Content = "" + Nalezeno;
+                if (Nalezeno == 1)
+                {
+                    Btn.Foreground = new SolidColorBrush(Colors.Blue);
+                }
+                else if (Nalezeno == 2)
+                {
+                    Btn.Foreground = new SolidColorBrush(Colors.Green);
+                }
+                else if (Nalezeno == 3)
+                {
+                    Btn.Foreground = new SolidColorBrush(Colors.Yellow);
+                }
+                else if (Nalezeno == 4)
+                {
+                    Btn.Foreground = new SolidColorBrush(Colors.Red);
+                }
+                Btn.Background = new SolidColorBrush(Colors.LightGray);
+                Grid.SetRow(Btn, selRadek);
+                Grid.SetColumn(Btn, selSloupec);
+                DynamicGrid.Children.Add(Btn);
+                return;
+            }
+            else
+            {
+                Grid DynamicGrid = test;
+                Button Btn = new Button();
+                Btn.Background = new SolidColorBrush(Colors.LightGray);
+                if(selRadek<0)
+                {
+                    selRadek = 0;
+                }
+                if(selSloupec<0)
+                {
+                    selSloupec = 0;
+                }
+                Grid.SetRow(Btn, selRadek);
+                Grid.SetColumn(Btn, selSloupec);
+                DynamicGrid.Children.Add(Btn);
+                //RevealPole(selRadek, selSloupec);
+
             }
         }
         void OdhalNuly(int selRadek, int selSloupec)
@@ -201,6 +258,14 @@ namespace WpfApp1
                     {
                         Btn.Foreground = new SolidColorBrush(Colors.Green);
                     }
+                    else if (Nalezeno == 3)
+                    {
+                        Btn.Foreground = new SolidColorBrush(Colors.Yellow);
+                    }
+                    else if (Nalezeno == 4)
+                    {
+                        Btn.Foreground = new SolidColorBrush(Colors.Red);
+                    }
                     Btn.Background = new SolidColorBrush(Colors.LightGray);
                     Grid.SetRow(Btn, selRadek);
                     Grid.SetColumn(Btn, selSloupec);
@@ -235,6 +300,8 @@ namespace WpfApp1
 
                     Spawn = false;
                     Cas = 0;
+                    BombCTR = 20;
+                    BombCounterLabel.Content = "Počet min: " + BombCTR + "/20";
                     CasUkazatel();
                     Grid DynamicGrid = test;
                     DynamicGrid.Children.Clear();
@@ -323,6 +390,14 @@ namespace WpfApp1
                         else if(FoundBombs==2)
                         {
                             Btn.Foreground = new SolidColorBrush(Colors.Green);
+                        }
+                        else if (FoundBombs == 3)
+                        {
+                            Btn.Foreground = new SolidColorBrush(Colors.Yellow);
+                        }
+                        else if (FoundBombs == 4)
+                        {
+                            Btn.Foreground = new SolidColorBrush(Colors.Red);
                         }
                         Btn.Background = new SolidColorBrush(Colors.LightGray);
                         Grid.SetRow(Btn, selRadek);
