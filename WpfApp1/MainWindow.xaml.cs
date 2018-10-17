@@ -144,7 +144,13 @@ namespace WpfApp1
             {
                 for (int k = 0; k < 3; k++)
                 {
-                    RevealPole(((selRadek - 1) + j), ((selSloupec - 1) + k));
+                    //RevealPole(((selRadek - 1) + j), ((selSloupec - 1) + k));
+                    string VolnoOkoli1 = ((selRadek - 1) + j) + "" + ((selSloupec - 1) + k);
+                    var VolnoOkoliList1 = BombList.FirstOrDefault(stringToCheck => stringToCheck.Contains(VolnoOkoli1));
+                    if (VolnoOkoliList1 == null)
+                    {
+                        //RevealPole(((selRadek - 1) + o), ((selSloupec - 1) + p));
+                    }
                 }
             }
         }
